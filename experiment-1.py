@@ -8,16 +8,6 @@ import sys
 import os
 from pathlib import Path
 
-import subprocess
-
-def install(package):
-    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-
-if os.getenv('PAPERSPACE'):
-    install('pandas')
-
-import pandas as pd
-
 import logging
 logging.basicConfig(level=logging.INFO)
 
@@ -88,13 +78,4 @@ for m in models:
 logging.info('All models fitted')
     
 # Save results
-results_path.mkdir(parents=True, exist_ok=True)
-for i, (m, h) in enumerate(hists):
-    f_name = 'results-'+str(i)+'.json'
-    with open(results_path / f_name, 'w') as f:
-        f.write('[')
-        f.write(m.to_json())
-        f.write(',')
-        hist_df = pd.DataFrame(h.history)
-        f.write(hist_df.to_json())
-        f.write(']')
+experiment_utils.save_results(hists, results_path)

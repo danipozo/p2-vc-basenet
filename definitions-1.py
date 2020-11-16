@@ -26,7 +26,8 @@ basenet = keras.Sequential(
         Dense(50, activation='relu'),
         Dense(25),
         Softmax()
-    ]
+    ],
+    name='basenet'
 )
 
 # Model 2: Basenet, with more filters
@@ -40,7 +41,8 @@ model2 = keras.Sequential(
         Dense(50, activation='relu'),
         Dense(25),
         Softmax()
-    ]
+    ],
+    name='model2'
 )
 
 # Model 3: Basenet, with more layers
@@ -57,7 +59,8 @@ model3 = keras.Sequential(
         Dense(50, activation='relu'),
         Dense(25),
         Softmax()
-    ]
+    ],
+    name='model3'
 )
 
 # Model 4: Basenet, with more layers and more filters
@@ -74,7 +77,8 @@ model4 = keras.Sequential(
         Dense(50, activation='relu'),
         Dense(25),
         Softmax()
-    ]
+    ],
+    name='model4'
 )
 
 experiment_utils.save_models([basenet, model2, model3, model4],
